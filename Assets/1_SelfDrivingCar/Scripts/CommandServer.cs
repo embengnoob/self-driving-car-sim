@@ -111,6 +111,7 @@ public class CommandServer : MonoBehaviour
 					data ["tot_obes"] = _wayPointUpdate.getOBENumber ().ToString ();
 					data ["tot_crashes"] = _wayPointUpdate.getCrashNumber ().ToString ();
 					data ["distance"] = _wayPointUpdate.getDrivenDistance().ToString();
+					data ["position"] = _wayPointUpdate.getCarPosition().ToString();
 
 					int difference = Mathf.Abs(Current() - startingTime);
 					// Debug.Log("simulationTime (s): " + difference);

@@ -29,6 +29,7 @@ public class WayPointUpdate : MonoBehaviour
 	private float timeLeft = 120.0f;
 	private float total_driven_distance = 0.0f;
 	private float angular_difference = 0.0f;
+	// private Vector3 car_position;
 
 	public WaypointTracker_pid waypointTracker_pid;
 
@@ -36,7 +37,9 @@ public class WayPointUpdate : MonoBehaviour
 	void Start ()
 	{
 		// find all view points. set up object fields
-		this.waypoints = GameObject.FindGameObjectsWithTag ("Waypoint");
+		this.waypoints = GameObject.FindGameObjectsWithTag("Waypoint");
+		// this.car_position = new Vector3(0.0f, 1.0f, 0.0f);
+		// this.carPosition = GameObject.FindGameObjectsWithTag("Car").transform.position;
 		this.numberOfWayPoints = this.waypoints.Length;
 		this.firstWayPoint = findWayPointByNumber (0);
 		this.laps = 1;
@@ -81,6 +84,9 @@ public class WayPointUpdate : MonoBehaviour
 		if (Time.fixedTime >= timeToGo) {
 			foreach (GameObject wayPoint in this.waypoints) {
 				if (getWayPointNumber (wayPoint) == (getWayPointNumber (currentWayPoint) + 1) % numberOfWayPoints) {
+					
+					// // current position of the car
+					// this.car_position = this.transform.position
 
 					// distance between can and next waypoint
 					float dist = Vector3.Distance (this.transform.position, wayPoint.transform.position);
@@ -250,6 +256,11 @@ public class WayPointUpdate : MonoBehaviour
 	public int getCrashNumber ()
 	{
 		return this.tot_crashes;
+	}
+
+	public Vector3 getCarPosition ()
+	{
+		return this.transform.position;
 	}
 
 	private int getWayPointNumber(GameObject wayPoint)
